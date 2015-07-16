@@ -1,0 +1,440 @@
+This is TeX, Version 3.14159 (Web2C 7.3.1) (format=latex 2000.5.26)  12 APR 2002 12:00
+**./images.tex
+(./images.tex
+LaTeX2e <1999/12/01> patch level 1
+Babel <v3.6Z> and hyphenation patterns for american, french, german, ngerman, n
+ohyphenation, loaded.
+
+(/dpi/teTeX/share/texmf/tex/latex/base/report.cls
+Document Class: report 1999/09/10 v1.4a Standard LaTeX document class
+(/dpi/teTeX/share/texmf/tex/latex/base/size10.clo
+File: size10.clo 1999/09/10 v1.4a Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (/dpi/teTeX/share/texmf/tex/latex/base/ifthen.sty
+Package: ifthen 1999/09/10 v1.1b Standard LaTeX ifthen package (DPC)
+) (/dpi/teTeX/share/texmf.local/tex/latex/latex2html/html.sty
+Package: html 1999/07/19 v1.38 hypertext commands for latex2html (nd, hws, rrm)
+
+\c@lpart=\count88
+\c@lchapter=\count89
+\c@lsection=\count90
+\c@lsubsection=\count91
+\c@lsubsubsection=\count92
+\c@lparagraph=\count93
+\c@lsubparagraph=\count94
+\c@lsubsubparagraph=\count95
+\ptrfile=\write3
+) (/dpi/teTeX/share/texmf/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2000/01/22 v6.69c Hypertext links for LaTeX
+(/dpi/teTeX/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\@linkdim=\dimen103
+\Hy@linkcounter=\count96
+\Hy@pagecounter=\count97
+(/dpi/teTeX/share/texmf/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 1999/10/05 v0.6 PDFDocEncoding (Heiko Oberdiek)
+)
+Package hyperref Info: Bookmarks ON on input line 1459.
+Package hyperref Info: Hyper figures OFF on input line 1478.
+Package hyperref Info: Link nesting OFF on input line 1483.
+Package hyperref Info: Hyper index ON on input line 1486.
+Package hyperref Info: Plain pages ON on input line 1491.
+Package hyperref Info: Backreferencing OFF on input line 1498.
+Implicit mode ON; LaTeX internals redefined
+(/dpi/teTeX/share/texmf.local/tex/latex/latex2html/url.sty
+Package: url 1999/03/02  ver 1.4  Verb mode for urls, email addresses, and file
+ names
+)
+\Fld@menulength=\count98
+\Field@Width=\dimen104
+\Fld@charsize=\dimen105
+\Choice@toks=\toks15
+\Field@toks=\toks16
+Package hyperref Info: Hyper figures OFF on input line 2108.
+Package hyperref Info: Link nesting OFF on input line 2113.
+Package hyperref Info: Hyper index ON on input line 2116.
+Package hyperref Info: backreferencing OFF on input line 2123.
+Package hyperref Info: Link coloring OFF on input line 2128.
+\c@Item=\count99
+\c@Hfootnote=\count100
+)
+*hyperref using default driver hypertex*
+(/dpi/teTeX/share/texmf/tex/latex/hyperref/hypertex.def) (/dpi/teTeX/share/texm
+f/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(/dpi/teTeX/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 1999/02/16 v1.0l Standard LaTeX Graphics (DPC,SPQR)
+(/dpi/teTeX/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+) (/dpi/teTeX/share/texmf/tex/latex/config/graphics.cfg)
+Package graphics Info: Driver file: dvips.def on input line 80.
+(/dpi/teTeX/share/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen106
+\Gin@req@width=\dimen107
+) (/dpi/teTeX/share/texmf/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/01/15 v2.05 AMS math features
+\@mathmargin=\skip43
+For additional information on amsmath, use the `?' option.
+(/dpi/teTeX/share/texmf/tex/latex/amsmath/amstext.sty
+Package: amstext 1999/11/15 v2.0
+(/dpi/teTeX/share/texmf/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks17
+\ex@=\dimen108
+)) (/dpi/teTeX/share/texmf/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen109
+) (/dpi/teTeX/share/texmf/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count101
+LaTeX Info: Redefining \frac on input line 198.
+\uproot@=\count102
+\leftroot@=\count103
+LaTeX Info: Redefining \overline on input line 302.
+\classnum@=\count104
+\DOTSCASE@=\count105
+LaTeX Info: Redefining \ldots on input line 376.
+LaTeX Info: Redefining \dots on input line 379.
+LaTeX Info: Redefining \cdots on input line 464.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen110
+LaTeX Font Info:    Redeclaring font encoding OML on input line 563.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 564.
+\macc@skew=\dimen111
+\c@MaxMatrixCols=\count106
+\dotsspace@=\muskip10
+\c@parentequation=\count107
+\dspbrk@lvl=\count108
+\tag@help=\toks18
+\row@=\count109
+\column@=\count110
+\maxfields@=\count111
+\andhelp@=\toks19
+\eqnshift@=\dimen112
+\alignsep@=\dimen113
+\tagshift@=\dimen114
+\tagwidth@=\dimen115
+\totwidth@=\dimen116
+\lineht@=\dimen117
+\@envbody=\toks20
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+LaTeX Info: Redefining \[ on input line 2594.
+LaTeX Info: Redefining \] on input line 2595.
+) (/dpi/teTeX/share/texmf/tex/latex/misc/float.sty
+Package: float 1999/05/29 v1.2d Float enhancements (AL)
+\c@float@type=\count112
+\float@box=\box28
+\@floatcapt=\box29
+) (/dpi/teTeX/share/texmf/tex/latex/listings/listings.sty
+Package: listings 1999/07/12 v0.20 (Carsten Heinz)
+\lst@mode=\count113
+\lst@token=\toks21
+\lst@length=\count114
+\lst@width=\dimen118
+\lst@linewidth=\dimen119
+\lst@column=\count115
+\lst@pos=\count116
+\lst@lostspace=\dimen120
+\lst@lineno=\count117
+\c@lstlisting=\count118
+\lst@maxwidth=\dimen121
+(/dpi/teTeX/share/texmf/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 1999/07/12 v0.20 (Carsten Heinz)
+\c@lstlabel=\count119
+\lst@skiplabels=\count120
+\lst@innerspread=\dimen122
+\lst@outerspread=\dimen123
+) (/dpi/teTeX/share/texmf/tex/latex/listings/listings.cfg)) (/dpi/teTeX/share/t
+exmf/tex/latex/listings/lstlang1.sty) (/dpi/teTeX/share/texmf/tex/latex/listing
+s/lstlang2.sty) (/dpi/teTeX/share/texmf/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 1999/07/12 v0.20 (Carsten Heinz)
+) (/dpi/teTeX/share/texmf/tex/latex/graphics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
+(/dpi/teTeX/share/texmf/tex/latex/config/color.cfg)
+Package color Info: Driver file: dvips.def on input line 125.
+(/dpi/teTeX/share/texmf/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)) (/dpi/teTeX/share/texmf/tex/latex/base/inputenc.sty
+Package: inputenc 1999/09/17 v0.992 Input encoding file 
+(/dpi/teTeX/share/texmf/tex/latex/base/latin1.def
+File: latin1.def 1999/09/17 v0.992 Input encoding file 
+))
+\sizebox=\box30
+\lthtmlwrite=\write4
+No file images.aux.
+\openout1 = `images.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+Package hyperref Info: Link coloring OFF on input line 164.
+(/dpi/teTeX/share/texmf/tex/latex/hyperref/nameref.sty
+Package: nameref 2000/01/19 v2.17 Cross-referencing by name of section
+\c@section@level=\count121
+)
+LaTeX Info: Redefining \ref on input line 164.
+LaTeX Info: Redefining \pageref on input line 164.
+
+latex2htmlLength hsize=349.0pt
+
+latex2htmlLength vsize=765.37907pt
+
+latex2htmlLength hoffset=0.0pt
+
+latex2htmlLength voffset=0.0pt
+
+latex2htmlLength topmargin=0.0pt
+
+latex2htmlLength topskip=0.00003pt
+
+latex2htmlLength headheight=0.0pt
+
+latex2htmlLength headsep=0.0pt
+
+latex2htmlLength parskip=6.45831pt plus 2.15277pt minus 2.15277pt
+
+latex2htmlLength oddsidemargin=99.58464pt
+
+latex2htmlLength evensidemargin=99.58464pt
+
+l2hSize :tex2html_wrap_inline9261:6.95831pt::6.95831pt::16.05563pt.
+[1
+
+
+
+]
+l2hSize :tex2html_wrap_inline9268:8.0pt::8.0pt::5.50005pt.
+[2
+
+
+]
+l2hSize :tex2html_wrap_inline9286:6.95831pt::6.95831pt::8.27783pt.
+[3
+
+
+]
+l2hSize :tex2html_wrap_inline9298:6.45831pt::0.0pt::6.50238pt.
+[4
+
+
+]
+l2hSize :tex2html_wrap_inline9310:8.0pt::8.0pt::3.27782pt.
+[5
+
+
+]
+l2hSize :tex2html_wrap_inline9312:8.0pt::8.0pt::3.27782pt.
+[6
+
+
+]
+l2hSize :tex2html_wrap_indisplay9327:14.20952pt::14.20952pt::17.84454pt.
+[7
+
+
+]
+l2hSize :tex2html_wrap_indisplay9328:8.0pt::8.0pt::55.11926pt.
+[8
+
+
+]
+l2hSize :tex2html_wrap_indisplay9329:14.20952pt::14.20952pt::17.84454pt.
+[9
+
+
+]
+l2hSize :tex2html_wrap_indisplay9330:7.44444pt::7.44444pt::77.34726pt.
+[10
+
+
+]
+l2hSize :tex2html_wrap_indisplay9331:14.20952pt::14.20952pt::17.84454pt.
+[11
+
+
+]
+l2hSize :tex2html_wrap_indisplay9332:6.95831pt::6.95831pt::55.77208pt.
+[12
+
+
+]
+l2hSize :tex2html_wrap_indisplay9334:8.0pt::8.0pt::59.41092pt.
+[13
+
+
+]
+l2hSize :tex2html_wrap_indisplay9336:7.44444pt::7.44444pt::67.95831pt.
+[14
+
+
+]
+l2hSize :tex2html_wrap_indisplay9338:6.95831pt::6.95831pt::32.54985pt.
+[15
+
+
+]
+l2hSize :tex2html_wrap_indisplay9340:6.95831pt::6.95831pt::20.44449pt.
+[16
+
+
+]
+l2hSize :tex2html_wrap_indisplay9342:9.14003pt::9.14003pt::119.71402pt.
+[17
+
+
+]
+l2hSize :tex2html_wrap_indisplay9344:6.95831pt::6.95831pt::15.3831pt.
+[18
+
+
+]
+l2hSize :tex2html_wrap_indisplay9346:6.95831pt::6.95831pt::49.83337pt.
+[19
+
+
+]
+l2hSize :tex2html_wrap_indisplay9348:6.95831pt::6.95831pt::55.11926pt.
+[20
+
+
+]
+l2hSize :tex2html_wrap_indisplay9350:8.0pt::8.0pt::70.67473pt.
+[21
+
+
+]
+l2hSize :tex2html_wrap_indisplay9352:8.0pt::8.0pt::127.64685pt.
+[22
+
+
+]
+l2hSize :tex2html_wrap_indisplay9354:6.95831pt::6.95831pt::20.44449pt.
+[23
+
+
+]
+l2hSize :tex2html_wrap_indisplay9356:9.14003pt::9.14003pt::132.85754pt.
+[24
+
+
+]
+l2hSize :tex2html_wrap_indisplay9360:8.0pt::8.0pt::118.62373pt.
+[25
+
+
+]
+l2hSize :tex2html_wrap_inline9365:6.95831pt::6.95831pt::8.27783pt.
+[26
+
+
+]
+l2hSize :tex2html_wrap_inline9376:6.95831pt::6.95831pt::8.27783pt.
+[27
+
+
+]
+l2hSize :tex2html_wrap_indisplay9415:14.76508pt::14.76508pt::140.63953pt.
+[28
+
+
+]
+l2hSize :tex2html_wrap_inline9432:8.0pt::8.0pt::54.19452pt.
+[29
+
+
+]
+l2hSize :tex2html_wrap_inline9442:7.9067pt::0.0pt::24.59402pt.
+[30
+
+
+]
+l2hSize :tex2html_wrap_inline9453:8.0pt::8.0pt::34.11484pt.
+[31
+
+
+]
+l2hSize :tex2html_wrap_inline9455:6.94444pt::0.0pt::6.02087pt.
+[32
+
+
+]
+l2hSize :tex2html_wrap_inline9470:8.14003pt::0.0pt::9.98618pt.
+[33
+
+
+]
+l2hSize :tex2html_wrap_inline9472:7.9067pt::0.0pt::24.59402pt.
+[34
+
+
+]
+l2hSize :tex2html_wrap_inline9474:7.9067pt::0.0pt::13.43764pt.
+[35
+
+
+]
+l2hSize :tex2html_wrap_inline9509:7.33331pt::7.33331pt::17.0559pt.
+[36
+
+
+]
+l2hSize :tex2html_wrap_indisplay9515:14.76508pt::14.76508pt::138.407pt.
+[37
+
+
+]
+l2hSize :tex2html_wrap_inline9519:7.33331pt::7.33331pt::25.60391pt.
+[38
+
+
+]
+l2hSize :tex2html_wrap_indisplay9525:15.4051pt::15.4051pt::151.85226pt.
+[39
+
+
+]
+l2hSize :tex2html_wrap_inline9647:8.14003pt::0.0pt::4.98616pt.
+[40
+
+
+] (images.aux) ) 
+Here is how much of TeX's memory you used:
+ 3754 strings out of 10901
+ 48758 string characters out of 72380
+ 107624 words of memory out of 263001
+ 6695 multiletter control sequences out of 10000+0
+ 4598 words of font info for 19 fonts, out of 400000 for 1000
+ 14 hyphenation exceptions out of 1000
+ 27i,5n,25p,281b,243s stack positions out of 300i,100n,500p,50000b,4000s
+
+Output written on images.dvi (40 pages, 11864 bytes).

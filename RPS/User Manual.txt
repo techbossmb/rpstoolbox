@@ -1,0 +1,694 @@
+RPS Toolbox User Manual
+
+% probscore = binTest(Embedded, intercepts, probabilitymatrix)
+%
+% Input Variables
+%	Embedded - the embedded test signal 
+%	intercepts - intercepts for dividing up the bins
+%   probabilitymatrix - the matrix of the probability masses of assumed class
+%
+% Output Variables
+%	probscore - the log probability score for the testing instance
+%
+% Description
+%	This code outputs the probability score by the phase space bin-based bayes classifier
+%   for an embedded testing signal.
+
+% probabilitymatrix = binTrain(EmbeddedArray,intercepts)
+%
+% Input Variables
+%	EmbeddedArray - a cell array consisting of embedded signals of one class	                                                                                                                                        
+%	intercepts - intercepts for dividing up the bins
+%
+% Output Variables
+%	probabilitymatrix - the matrix of the probability masses for this class
+%
+% Description
+%	This code outputs the trained matrix of probability masses of one class for using with the 
+%   phase space bin-based bayes classifier.
+
+% [lags] = createLags(dimension, timeLag)
+%
+% Input Variables
+%       dimension - dimension to use for the reconstructed phase spaces
+%       timeLag - time lag to use for the reconstructed phase spaces
+%
+% Output Variables
+%       lags - vector of indices to use for forming RPS.
+%
+% Language - MATLAB
+%  
+% Description:  Creates the lag structure with uniformly spaced lags for
+%               the embed function.
+
+% intercepts = decideIntercepts(EmbeddedArray,strips)
+%
+% Input Variables
+%	EmbeddedArray - a cell array consisting of embedded signals of one class	                                                                                                                                        
+%	strips - number of strips per dimension
+%
+% Output Variables
+%	intercepts - intercepts for dividing up the bins
+%
+% Description
+%	This code outputs decides intercepts of bins used for training and testing the 
+%   phase space bin-based bayes classifier.
+
+% P = densityEstimation(temp1, N)
+%
+% Input Variables
+%	temp1 - the input feature matrix.
+%	N - parameter for N-by-N box dividing of the feature space.
+%
+% Output Variables
+%	P - matrix of Density distribution, N-by-N.
+%
+% Description
+%	This code is to estimate the discrete density distribution of a feature matrix in its 
+%   feature space.
+
+% dimension = determineDimension(timeSeries, timeLag)
+%
+% Input Variables
+%       timeSeries - a set of signals in a cell array
+%       timeLag - time lag to use for the reconstructed phase spaces
+%
+% Output Variables
+%       dimension - the estimated dimension of the RPS for the signal
+%
+% Language - MATLAB
+%  
+% Description:  Uses false nearest neighbor method to determine RPS
+%               dimension
+
+% timeLag = determineTimeLag(timeSeries)
+%
+% Input Variables
+%       timeSeries - a set of signals
+%
+% Output Variables
+%       timeLag - time lag to use for the reconstructed phase spaces
+%
+% Language - MATLAB
+%  
+% Description:  Uses first minimum of the automutual information function
+%               to set time lag
+%
+% Requirements: TSTools
+
+% phaseSpace = embed(timeSeries,lags, dimension, type)
+%
+% Input Variables
+%       timeSeries - one dimensional time series to be embedded into multiple dimensions
+%       lags - vector of lags to use for the embedding, or single value for
+%       tau when entered with a dimension value
+%       dimension - the number of dimensions in the RPS
+%       type - 1 is regular embedding (default is 1)
+%              2 is embed with delta
+%              3 is embed with difference information
+%
+% Output Variables
+%       phaseSpace - matrix containing the embedded values (reconstructed phase space)
+%  
+% Description:  Embeds the inputted time series according to the lags. It assumes that
+%               the 1st dimension will be the original time series with no
+%               lag. May perform one of three sets of embedding - standard
+%               (type=1), with Delta (type=2), and with Difference
+%               (type=3). Default is standard embed. May accept lags in one
+%               of two fashions: either as a tau value with a dimension
+%               value, or as a vector of lags.
+
+% function [sigout, err, dis, res] = enhanceGlobal(sigin, cleansig, lag, orgdim, dimflag, dimvar, method, constraints, wtflag)
+%
+% Input Variables
+%       sigin -  input signal (same length)
+%       cleansig - clean input signal for computing errors: dis, res, sqerr
+%                  if empty [] then those outputs will be returned as NaN
+%       lag -    base lag value OR full lag vector for RPS (default=1)
+%                if using vector, must be size orgdim-1 (lag 0 is implied 1st dim)
+%       orgdim - starting RPS dimension (default=15)
+%       dimflag- 0 = fixed final dim, 1 = auto dim selection (default=0)
+%       dimvar - if (dimflag=0): projected RPS dimension, must be < orgdim (default=5)
+%                if (dimflag=1): threshold for order/finaldim selection (default=0.5)
+%                Typical range [0.1-1]: Results ARE sensitive to this value 
+%       method - type of projection: (default=1)
+%                1: Least squares (default)
+%                2: LMMSE
+%                3: Time domain constraints (TDC)
+%                4: Spectral domain constraints (SDC)
+%       constraints - constraint parameters for methods 4 & 5
+%                Method=3, TDC: scalar parameter mu (default=0.5)
+%                Method=4, SDC: scalar param Wiener gain eta (default=0.5)
+%       wtflag - 1 = (default) reconstruction with time-aligned Hanning weighted averaging
+%                0 = reconstruction with individual points from columns
+%
+% Output Variables
+%       sigout - output signal
+%       err - signal error
+%       dis - signal distortion
+%       res - noise residual
+%
+% Description:  Uses global projection to enhance RPS
+%               with optional automatic order selection - Merhav et al. method
+%               Noise power is average of noise subspace eigenvalues
+%
+% Requirments:  Signal Processing Toolbox
+
+% function [sigout, err, dis, res] = enhanceGlobalFramed(sigin, cleansig, halfwin, lag, orgdim, dimflag, dimvar, method, constraints, wtflag)
+%
+% Input Variables
+%       sigin  - input signal
+%       cleansig - clean input signal for computing errors: dis, res, sqerr
+%                  if empty [] then those outputs will be returned as NaN
+%       halfwin- halfwin length of frame window to use (default = 128)
+%                OLA window will be hann(2*(halfwin)+1) w/ stepsize=halfwin
+%       lag -    base lag value OR full lag vector for RPS (default=1)
+%                if using vector, must be size orgdim-1 (lag 0 is implied 1st dim)
+%       orgdim - starting RPS dimension (default=15)
+%       dimflag- 0 = fixed final dim, 1 = auto dim selection (default=0)
+%       dimvar - if (dimflag=0): projected RPS dimension, must be < orgdim (default=5)
+%                if (dimflag=1): threshold for order/finaldim selection (default=0.5)
+%                Typical range [0.1-1]: Results ARE sensitive to this value 
+%       method - type of projection:
+%                1: Least squares (default)
+%                2: LMMSE
+%                3: Time domain constraints (TDC)
+%                4: Spectral domain constraints (SDC)
+%       constraints - constraint parameters for methods 4 & 5
+%                Method=3, TDC: scalar parameter mu (default=0.5)
+%                Method=4, SDC: scalar param Wiener gain eta (default=0.5)
+%       wtflag - 1 = (default) reconstruction with time-aligned Hanning weighted averaging
+%                0 = reconstruction with individual points from columns
+%
+% Output Variables
+%       sigout - output signal
+%       err - signal error
+%       dis - signal distortion
+%       res - noise residual
+%
+% Description:  Uses global projection on each frame to enhance RPS
+%               with optional automatic order selection (final projection dim)
+%               overlap-add reconstruction of frames
+%               See "EnhanceGlobal.m" for more details on method
+%
+% Requirments:  Signal Processing Toolbox
+
+% function [sigout, err, dis, res] = enhanceLocal(sigin, cleansig, neighbors, exclude, lag, orgdim, dimflag, dimvar, method, constraints, wtflag)
+%
+% Input Variables
+%       sigin - input signal
+%       cleansig - clean input signal for computing errors: dis, res, sqerr
+%                  if empty [] then those outputs will be returned as NaN (default=[])
+%       neighbors - number of pts in a local neighborhood (default=15)
+%       exclude - half window size of signal points to exclude as neighbors (default=3)
+%                 e.g. exclude=0 excludes only self, exclude=3 excludes a window of 7 points
+%       lag -    base lag value OR full lag vector for RPS (default=1)
+%                if using vector, must be size orgdim-1 (lag 0 is implied 1st dim)
+%       orgdim - starting RPS dimension (default=15)
+%       dimflag- 0 = fixed final dim, 1 = auto dim selection (default=0)
+%       dimvar - if (dimflag=0): projected RPS dimension, must be < orgdim (default=5)
+%                if (dimflag=1): threshold for order/finaldim selection (default=0.5)
+%                Typical range [0.1-1]: Results ARE sensitive to this value 
+%       method - type of projection:
+%                1: Least squares (default)
+%                2: LMMSE
+%                3: Time domain constraints (TDC)
+%                4: Spectral domain constraints (SDC)
+%       constraints - constraint parameters for methods 4 & 5
+%                Method=3, TDC: scalar parameter mu (default=0.5)
+%                Method=4, SDC: scalar param Wiener gain eta (default=0.5)
+%       wtflag - 1 = (default) reconstruction with time-aligned Hanning weighted averaging
+%                0 = reconstruction with individual points from columns
+%
+% Output Variables
+%       sigout - output signal
+%       err - signal error
+%       dis - signal distortion
+%       res - noise residual
+%
+% Description:  Uses local projection to enhance RPS
+%               with optional automatic order selection (final projection dim)
+%               Hanning window weights used for RPS signal reconstruction
+%               Noise power is average of noise subspace eigenvalues
+%
+% Requirments:  Signal Processing Toolbox
+
+% function [sigout, err, dis, res] = enhanceLocalFramed(sigin, cleansig, halfwin, neighbors, exclude, lag, orgdim, dimflag, dimvar, method, constraints, wtflag)
+%
+% Input Variables
+%       sigin  - input signal
+%       cleansig - clean input signal for computing errors: dis, res, sqerr
+%                  if empty [] then those outputs will be returned as NaN
+%       halfwin- halfwin length of frame window to use (default = 128)
+%                OLA window will be hann(2*(halfwin)+1) w/ stepsize=halfwin
+%       neighbors - number of pts in a local neighborhood (default=15)
+%       exclude - half window size of signal points to exclude as neighbors (default=3)
+%                 e.g. exclude=0 excludes only self, exclude=3 excludes a window of 7 points
+%       lag -    base lag value OR full lag vector for RPS (default=1)
+%                if using vector, must be size orgdim-1 (lag 0 is implied 1st dim)
+%       orgdim - starting RPS dimension (default=15)
+%       dimflag- 0 = fixed final dim, 1 = auto dim selection (default=0)
+%       dimvar - if (dimflag=0): projected RPS dimension, must be < orgdim (default=5)
+%       dimvar - if (dimflag=1): threshold for order/finaldim selection (default=0.5)
+%                Typical range [0.1-1]: Results ARE sensitive to this value 
+%       method - type of projection:
+%                1: Least squares (default)
+%                2: LMMSE
+%                3: Time domain constraints (TDC)
+%                4: Spectral domain constraints (SDC)
+%       constraints - constraint parameters for methods 4 & 5
+%                Method=3, TDC: scalar parameter mu (default=0.5)
+%                Method=4, SDC: scalar param Wiener gain eta (default=0.5)
+%       wtflag - 1 = (default) reconstruction with time-aligned Hanning weighted averaging
+%                0 = reconstruction with individual points from columns
+%
+% Output Variables
+%       sigout - output signal
+%       err - signal error
+%       dis - signal distortion
+%       res - noise residual
+%
+% Description:  Uses "double-windowing" local projection on each frame to enhance RPS
+%               with optional automatic order selection (final projection dim)
+%               Then uses hanning-weighted OLA to reconstruct entire signal
+%               See "EnhanceLocal.m" & "EnhanceLocalPartial" for more details on method
+%
+% Requirments:  Signal Processing Toolbox
+
+% function [sigout, err, dis, res] = enhanceLocalPartial(sigin, cleansig, first, last, neighbors, exclude, lag, orgdim, dimflag, dimvar, method, constraints, wtflag)
+%
+% Input Variables
+%       sigin - input signal
+%       cleansig - clean input signal for computing errors: dis, res, sqerr
+%                  if empty [] then those outputs will be returned as NaN
+%       first - start index of region to be enhanced (default=floor(0.33*length(sigin)))
+%       last  - end index of region to be enhanced (default=floor(0.67*length(sigin)))
+%       neighbors - number of pts in a local neighborhood (default=15)
+%       exclude - half window size of signal points to exclude as neighbors (default=3)
+%                 e.g. exclude=0 excludes only self, exclude=3 excludes a window of 7 points
+%       lag -    base lag value OR full lag vector for RPS (default=1)
+%                if using vector, must be size orgdim-1 (lag 0 is implied 1st dim)
+%       orgdim - starting RPS dimension (default=15)
+%       dimflag- 0 = fixed final dim, 1 = auto dim selection (default=0)
+%       dimvar - if (dimflag=0): projected RPS dimension, must be < orgdim (default=5)
+%       dimvar - if (dimflag=1): threshold for order/finaldim selection (default=0.5)
+%                Typical range [0.1-1]: Results ARE sensitive to this value 
+%       method - type of projection:
+%                1: Least squares (default)
+%                2: LMMSE
+%                3: Time domain constraints (TDC)
+%                4: Spectral domain constraints (SDC)
+%       constraints - constraint parameters for methods 4 & 5
+%                Method=3, TDC: scalar parameter mu (default=0.5)
+%                Method=4, SDC: scalar param Wiener gain eta (default=0.5)
+%       wtflag - 1 = (default) reconstruction with time-aligned Hanning weighted averaging
+%                0 = reconstruction with individual points from columns
+%
+% Output Variables
+%       sigout - output signal
+%       err - signal error
+%       dis - signal distortion
+%       res - noise residual
+%
+% Description:  "Double-windowing" method of local projection enhancement
+%               with optional automatic order selection (final projection dim)
+%               Routine builds a single nearest-neighbor search database
+%               and uses it to enhance a (center) portion of the original signal.
+%               Specifically designed to be called by "EnhanceLocalFramed"
+%               Hanning window weights used for RPS signal reconstruction
+%               Noise power is average of noise subspace eigenvalues
+%
+% Requirments:  Signal Processing Toolbox
+
+% signals = filterBankFIR(signal,Wn,window)
+%
+% Input Variables
+%	signal - The signal to be filtered.
+%	Wn - The frequency cutoff(s) of the filter(s).
+%       window - The window used for filtering (default is kaiser(255,8)).
+%
+% Output Variables
+%	signals - A matrix of filtered signals by row.
+%
+% Description
+%	This code filters a signal using an FIR filter bank. The signals are
+%	returned as a matrix; each row is a signal. It is only intended for 
+%   	one-dimensional signals.
+%
+%
+% Requirments:  Signal Processing Toolbox
+
+% signals = filterBankIIR(signal,Wc,N,dB)
+%
+% Input Variables
+%	signal - The signal to be filtered.
+%	Wc - The frequency cutoff(s) of the filter(s).
+%       N - The order of the filters (default is 24)
+%       dB - The attenuation of the stopbands in dB (default is 45)
+%
+% Output Variables
+%	signals - A matrix of filtered signals by column.
+%
+% Description
+%	This code filters a signal using an IIR filter bank. It puts the 
+%   signal through forward and backward to eliminate phase distortion.
+%   It is only intended for one-dimensional signals.
+%
+%
+% Requirments:  Signal Processing Toolbox
+
+% newsig = filterIIR(signal,Wc,hilo,N,dB)
+%
+% Input Variables
+%	signal - The signal to be filtered.
+%	Wc - The frequency cutoff(s) of the filter(s).
+%       hilo - A string specifying the type of filter [low,high,band] (default is low)
+%       N - The order of the filter (default is 24)
+%       dB - The attenuation of the stopband in dB (default is 45)
+%
+% Output Variables
+%	newsig - The filtered signal
+%
+% Description
+%	This code filters a signal using an IIR filter. It puts the signal through
+%   forward and backward to eliminate phase distortion. It is only intended
+%   for one-dimensional signals.
+%
+%
+% Requirments:  Signal Processing Toolbox
+
+% [intercepts] = findRegions(EmbeddedArray,strips)
+%
+% Input Variables
+%	EmbeddedArray - the embedding
+%   strips - number of strips per dimension
+%
+% Output Variables
+%	intercepts - intercepts for dividing up the regions
+%
+% Description
+%	finds the intercepts to create n regions
+
+% percent = gfnn(signal, dimension, timeLag, gfnnRatio)
+%
+% Input Variables
+%       signal - a set of signals
+%       dimension -  the estimated dimension of the RPS for the signal
+%       timeLag -    time lag to use for the reconstructed phase spaces
+%       gfnnRatio -  ratio to use to determine if a point is a false nearest
+%                    neighbor (default is 15)
+%
+% Output Variables
+%
+%       percent - % of global false nearest neighbors
+%  
+% Description:  Uses global false nearest neighbor (fnn) method to determine
+%               percentage of fnn. Based on method described in Abarbanel (1996),
+%               section 4.2. See eqn. 4.6.
+%
+% Requirments:  Uses TSTool toolbox.
+
+% logProb = gmmemTest(mix,d,options)
+%
+% Input Variables
+%       mix - mixture model structure
+%       d   - embedded data
+%       options - see Modifications section (default is 0)
+%
+% Output Variables
+%       logProb - total log probability
+%
+% Description
+%       Evaluates the log probability of a data matrix.
+%
+%
+% Requirements:  Netlab Toolbox
+
+% mix = gmmemTrain(covartype,numMix,trainDataM,options)
+%
+% Input Variables
+%       covartype - covariance structure
+%       numMix - number of mixtures
+%       trainDataM - embedded data to train on
+%       options - options for GMM (see gmmHelp for more info)
+%
+% Output Variables
+%       mix - data structure for GMM
+%
+% Description:  Trains a GMM.
+%
+% Requirments:  Netlab Toolbox
+
+% [y] = henon(numOfPoints,a,b,x1_0, x2_0,throwAway)
+%
+% Input Variables
+%       numOfPoints - number of points wanted in signal returned
+%       a - the value for a
+%       b - the value for b
+%       x1_0 - the value of x1(0) (default is a value selected
+%       from the uniform distribution(0,1))
+%       x2_0 - the value of x2(0)(default is a value selected
+%       from the uniform distribution(0,1))
+%       throwAway - number of initial points to throw away (default is 500)
+%
+% Output Variables
+%       y - a set of points from the henon map
+%
+% Description:  Computes points using the henon map:
+%               x1(t+1) = a - x1^2(t) + b * x1(t-1)
+
+% [y] = logistic(numOfPoints,k,x_0,throwAway)
+%
+% Input Variables
+%       numOfPoints - number of points wanted in signal returned
+%       k - parameter for logistic function
+%       x_0 - value of x(0), the initial value (default is a value selected
+%       from the uniform distribution(0,1))
+%       throwAway - number of initial points to throw away (default is 500)
+%
+% Output Variables
+%       y - a set of points from the logistic map
+%  
+% Description:  Computes points using the logistic map:
+%               x(t+1) = k*x(t)*(1-x(t))
+%               k is a parameter where 0 <= k <= 4.
+%               x_0 is restricted so 0 <= x_0 <= 1.
+
+% yprime = lorenzFun(t,y,a,b,c)
+%
+% Evaluates lorenz derivatives at point y with params a,b,c
+% This function can be used with Matlab differential equation
+% solver tools such as "ODE45" to generate the lorenz flow
+%
+% Input Variables
+%       t - ignored (Lorenz is time-independent)
+%       y - current 3-element state vector
+%       a - the value for a / Beta  (default 8/3)
+%       b - the value for b / sigma (default 10)
+%       c - the value for c / rho   (default 528)
+%
+% Output Variables
+%       yprime - derivative of state-vector at point y
+%
+% Description:  Lorenz map
+%               y1prime = - b*y1 - b*y2)
+%               y2prime = c*y1 - y2 - y1*y3
+%               y3prime = - a*y1 + y1*y2
+% Example:
+%               [t y] = ode45(@lorenzFun,[0 100],[0.1 0.1 0.1]);
+%               plot3(y(:,1),y(:,2),y(:,3));
+
+%Syntax: x=mackeyglass(n,level,a,b,c,x0)
+%_______________________________________
+%
+% Simulation of the discretized variant of the Mackey-Glass PDE.
+%    x(i+1)=x(i)+ax(i-s)/(1+x(i-s)^c)-bx(i)
+%
+% x is the simulated time series.
+% n is the number of the simulated points.
+% level is the noise standard deviation divided by the standard deviation of the
+%   noise-free time series. We assume Gaussian noise with zero mean.
+% a, b, c, and s are the parameter
+% x0 is the initial values vector for x.
+%
+% Note:
+% s=length(x0)
+%
+%
+% Reference:
+%
+% Mackey M C, Glass L (1977): Oscillation and Chaos in Physiological
+% Control Systems. Science 177: 287-289
+
+% makegmmPlot(dataM,kmix,markerColor,markerSize,lineColor,lineWidth)
+%
+% Input Variables
+%	      dataM - the points in the space, note each row contains one point
+%	      kmix - number of GMM mixtures to learn
+%	      markerColor - color of the points (optional)
+%	      markerSize - size of the points (optional)
+%	      lineColor - color of the lines used to show 1 std of mixtures (optional)
+%	      lineWidth - width of the line used to show 1 std of mixtures (optional)
+%
+% Output Variables
+%	      none
+%
+% Description
+%	      Learns a GMM over the space defined by dataM. Plots the points and
+%	      the 1std radius of the mixtues.
+%
+% Requirments:  Netlab Toolbox
+
+% classind=maxclass(scorematrix)
+%
+% Input Variables
+%	scorematrix - N-by-M matrix, where N is the total number of testing samples 
+%                 and M is the number of classes 
+%
+% Output Variables
+%	classind - vector of length N containing class indices 
+%
+% Description
+%	This code finds the class for each testing example from a score matrix
+%
+
+% m = mode(distribution)
+%
+% Input Variables
+%       distribution - a set of integers
+%
+% Output Variables
+%       m - the mode
+%  
+% Description:  calculates the mode of a set
+
+% EmbeddedNorm=normalize(Embedded)
+%
+% Input Variables
+%	Embedded - input embedded signal
+%
+% Output Variables
+%	EmbeddedNorm - normalized embedded signal using radius of gyration
+%
+% Description
+%	This code performs phase space normalization for embedded signal
+
+% function phaseplot(timeSeries,lags, dimension,type, marker)
+%
+% Input Variables
+%       timeSeries - time series to be embedded and plotted
+%       lags - either a vector of lags, not including the implied zero, or
+%           a single value for tau when also entering a dimension value
+%           (default [1 2])
+%       dimension - number of dimensions in the phase space (default 3)
+%       type - type of embedding to be performed:
+%           1 = standard embedding (Default)
+%           2 = embed with delta
+%           3 = embed with difference
+%       marker - 0 for unconnected points, 1 for connected lines (default 0)
+%
+%       Note: User may enter an embedding in place of a time series by not
+%       supplying other input arguments
+%
+% Output Variables
+%       none
+%
+% Description:  Plot an embedded phase space (for example, from embed.m)
+% 		If the dimension is 2, will do 2-d plot
+% 		If the dimension is 3, will do 3-d plot
+% 		If the dimension is 4 or greater, will do a 3-d plot with color
+% 		    variation
+%       
+%       Note: Marker type will be reset to '.' if dimension 4 or greater
+
+% masses = probabilityMasses(EmbeddedArray,intercepts)
+%
+% Input Variables
+%	EmbeddedArray - the embedding
+%       intercepts - the intercepts for the regions along each dimension
+%
+% Output Variables
+%	masses - the matrix of the masses
+%
+% Description
+%	finds probability masses for each region
+
+% randomizedArray = randomizeArray(array)
+%
+% Input Variables
+%       array - An array
+%
+% Output Variable
+%       randomizedArray - A shuffled array
+%
+% Language - MATLAB
+%  
+% Description:  Uniformly shuffles an array
+
+% yprime = rosslerFun(t,y,a,b,c)
+%
+% Evaluates rossler derivatives at point y with params a,b,c
+% This function can be used with Matlab differential equation
+% solver tools such as "ODE45" to generate the rossler flow
+%
+% Input Variables
+%       t - ignored (Rossler is time-independent)
+%       y - current 3-element state vector
+%       a - the value for a (default 0.2)
+%       b - the value for b (default 0.2)
+%       c - the value for c (default 5.7)
+%
+% Output Variables
+%       yprime - derivative of state-vector at point y
+%
+% Description:  Rossler flow
+%               y1prime = -(y2 + y3)
+%               y2prime = y1 + a*y2
+%               y3prime = b + y1*y3 - c*y3
+% Example:
+%               [t y] = ode45(@rosslerFun,[0 100],[0.1 0.1 0.1]);
+%               plot3(y(:,1),y(:,2),y(:,3));
+
+% [surr] = surrogate(timeSeries)
+%
+% Input Variables
+%       timeSeries - collection of time series points for creating
+%           the surrogate
+%
+% Output Variables
+%       surr - collection of points making up the surrogate
+%
+% Description:  Creates a surrogate for the given data
+
+% [y] = tent(numOfPoints,mu,x_0,throwAway)
+%
+% Input Variables
+%       numOfPoints - number of points wanted in signal returned
+%       mu - the value of mu
+%       x_0 - value of x(0), the initial value (default is a value selected
+%       from the uniform distribution(0,1))
+%       throwAway - number of initial points to throw away
+%
+% Output Variables
+%       y - a set of points from the tent map
+%
+% Description
+%        Computes points using the tent map:
+%        x(t+1) = mu * [1 - 2 * abs(x(t) - 1/2)]
+%        t is a parameter where 0 <= t <= 1.
+%        x_0 is restricted so 0 <= x_0 <= 1.
+%        The equation is chaotic when mu > 0.5
+
+% [y] = whiteNoise(signalLength, mu, var)
+%
+% Input Variables
+%       signalLength - number of iterations
+%       mu - the mean for the white noise (default is 0)
+%       var - the variance for the white noise(default is 1)
+%
+% Output Variables
+%       y - a set of points making up the white noise
+%
+% Description
+%       generate a sample random distribution of N points
+%       with mean mu and variance var
