@@ -261,10 +261,44 @@ for i=1:3649
     rs(i,1) = norm(reconstructedSpace(i,1:5));
     rs(i,2) = norm(reconstructedSpace(i,6:10));
 end
+%% testing 10D projection on 1D
+for i=1:3649
+    nrs(i) = norm(reconstructedSpace(i,1:10));
+end
+nrs = nrs';
 
-x6 = gmmemTrain('full',100,rs, options);
+mixtureModel = gmmemTrain('full',16,nrs, options);
 gmmemTest(x6,rs,options);
-figure,makeGmmPlot(rs,100);
+figure,makeGmmPlot(rs,16);
+%% testing 10D unto 3D
+for i=1:3649
+rs3D(i,1) = norm(reconstructedSpace(i,1:4));
+rs3D(i,2) = norm(reconstructedSpace(i,5:7));
+rs3D(i,3) = norm(reconstructedSpace(i,8:10));
+end
+figure, plot3(rs3D(:,1), rs3D(:,2), rs3D(:,3));
+
+hold on,
+i=[1128 385 20 3307 1840 1839 380 1127 379 1129];
+plot3(rs3D(i,1), rs3D(i,2), rs3D(i,3),'ro');
+
+% plot specific dimensions
+d1=3;
+d2=8;
+d3=7;
+figure, plot3(reconstructedSpace(:,d1), reconstructedSpace(:,d2), reconstructedSpace(:,d3));
+hold on,
+i=[1128 385 20 3307 1840];
+plot3(reconstructedSpace(i,d1), reconstructedSpace(i,d2), reconstructedSpace(i,d3),'ro');
+%%%
+for i=1:32
+    xc(i,1) = norm(x6.centres(i,1:10));
+%     rs(i,2) = norm(reconstructedSpace(i,6:10));
+end
+
+x6 = gmmemTrain('full',16,rs, options);
+gmmemTest(x6,rs,options);
+figure,makeGmmPlot(rs,16);
 
 load reconstructedSpace;
 options = zeros(1,14);
@@ -272,9 +306,9 @@ options(1) = -1;  % no error display
 options(5) = 1;   % avoid covariance collapse
 % options(14) = 25; % number of EM iterations
 options(19) = 1;  % floor on covariance matrix
-x6 = gmmemTrain('full',2,reconstructedSpace, options);
+x6 = gmmemTrain('full',32,reconstructedSpace, options);
 logProbability = gmmemTest(x6,reconstructedSpace,options);
-makeGmmPlot(reconstructedSpace,2);
+figure,makeGmmPlot(reconstructedSpace,2);
 
 
 %% end trial

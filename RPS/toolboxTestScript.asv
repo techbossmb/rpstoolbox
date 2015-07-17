@@ -267,11 +267,29 @@ for i=1:3649
 end
 nrs = nrs';
 
-x6 = gmmemTrain('full',2,nrs, options);
+mixtureModel = gmmemTrain('full',16,nrs, options);
 gmmemTest(x6,rs,options);
 figure,makeGmmPlot(rs,16);
+%% testing 10D unto 3D
+for i=1:3649
+rs3D(i,1) = norm(reconstructedSpace(i,1:4));
+rs3D(i,2) = norm(reconstructedSpace(i,5:7));
+rs3D(i,3) = norm(reconstructedSpace(i,8:10));
+end
+figure, plot3(rs3D(:,1), rs3D(:,2), rs3D(:,3));
 
+hold on,
+i=[1128 385 20 3307 1840 1839 380 1127 379 1129];
+plot3(rs3D(i,1), rs3D(i,2), rs3D(i,3),'ro');
 
+% plot specific dimensions
+d1=3;
+d2=8;
+d3=7;
+figure, plot3(reconstructedSpace(:,d1), reconstructedSpace(:,d2), reconstructedSpace(:,d3));
+hold on,
+i=[1128 385 20 3307 1840];
+plot3(reconstructedSpace(i,d1), reconstructedSpace(i,d2), reconstructedSpace(i,d3),'ro');
 %%%
 for i=1:32
     xc(i,1) = norm(x6.centres(i,1:10));
